@@ -1,18 +1,36 @@
-# Wine-fall Tap
+# wine-fall/homebrew-tap
 
-## How do I install these formulae?
+Homebrew formulae for [wine-fall](https://github.com/wine-fall)'s tools.
 
-`brew install wine-fall/tap/<formula>`
-
-Or `brew tap wine-fall/tap` and then `brew install <formula>`.
-
-Or, in a `brew bundle` `Brewfile`:
-
-```ruby
-tap "wine-fall/tap"
-brew "<formula>"
+```sh
+brew install wine-fall/tap/which-account
 ```
 
-## Documentation
+## which-account
 
-`brew help`, `man brew` or check [Homebrew's documentation](https://docs.brew.sh).
+Asks which Chrome account a link should open in, then remembers the answer.
+See [wine-fall/which-account](https://github.com/wine-fall/which-account).
+
+It is built from source on your machine. That takes about ten seconds, but it
+means the binary matches your architecture and carries no quarantine flag — so
+no code signing, notarization or Apple developer account is involved anywhere.
+
+### Requirements
+
+Current Xcode Command Line Tools. Homebrew refuses to build from source against
+outdated ones:
+
+```
+Error: Your Command Line Tools are too outdated.
+```
+
+If you see that, `brew config` will show the version it found. Update them from
+Software Update in System Settings, or:
+
+```sh
+sudo rm -rf /Library/Developer/CommandLineTools
+sudo xcode-select --install
+```
+
+After installing, run `which-account --setup` to become the default browser;
+macOS asks you to confirm. `which-account --restore` hands it back.
