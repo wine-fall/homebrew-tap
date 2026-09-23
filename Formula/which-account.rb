@@ -1,8 +1,8 @@
 class WhichAccount < Formula
   desc "Ask which Chrome account a link should open in, then remember the answer"
   homepage "https://github.com/wine-fall/which-account"
-  url "https://github.com/wine-fall/which-account/archive/refs/tags/v1.0.2.tar.gz"
-  sha256 "9e1b1985744ba7a7890c14b37331c5cf0f1e583ab4e78467ac6eb450fc27b1d5"
+  url "https://github.com/wine-fall/which-account/archive/refs/tags/v1.0.3.tar.gz"
+  sha256 "3928e3273fe53e68fe914f7d29bce4ddcca9383c98cf0c6482055eb979215531"
   license "MIT"
   head "https://github.com/wine-fall/which-account.git", branch: "main"
 
@@ -31,18 +31,11 @@ class WhichAccount < Formula
     # holding the symlink, and --setup would register that instead of the app.
     (bin/"which-account").write <<~SH
       #!/bin/bash
-      exec "#{opt_prefix}/which-account.app/Contents/MacOS/which-account" "\$@"
+      exec "#{opt_prefix}/which-account.app/Contents/MacOS/which-account" "$@"
     SH
     chmod 0755, bin/"which-account"
   end
 
-  # LaunchServices has to know the bundle exists before macOS will offer it as a
-  # browser. opt_prefix rather than prefix, so this survives `brew upgrade`.
-  def post_install
-    system "/System/Library/Frameworks/CoreServices.framework/Frameworks/" \
-           "LaunchServices.framework/Support/lsregister",
-           "-f", opt_prefix/"which-account.app"
-  end
 
   def caveats
     <<~EOS
