@@ -36,7 +36,6 @@ class WhichAccount < Formula
     chmod 0755, bin/"which-account"
   end
 
-
   def caveats
     <<~EOS
       which-account is installed but not yet in charge of anything. To make it
