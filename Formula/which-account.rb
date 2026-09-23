@@ -13,6 +13,13 @@ class WhichAccount < Formula
     strategy :git
   end
 
+  bottle do
+    root_url "https://github.com/wine-fall/homebrew-tap/releases/download/which-account-1.0.4"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "580c98b81f6813a205a7b2ec1d4cbae2ffc218f7127433c322214943117ac903"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "2c87657b9c255d78bc6934d04ac87cebece9483a7456c095359fa95b1f3c1b71"
+    sha256 cellar: :any_skip_relocation, sequoia:       "3c9431d0e1bf4ba053c5983d4a91caf947766e8b786223f9113d089417e189cf"
+  end
+
   depends_on macos: :ventura
 
   # Built from source on the installing machine, so the binary matches the local
