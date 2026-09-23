@@ -1,8 +1,8 @@
 class WhichAccount < Formula
   desc "Ask which Chrome account a link should open in, then remember the answer"
   homepage "https://github.com/wine-fall/which-account"
-  url "https://github.com/wine-fall/which-account/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "1a6abe0bf1c7142770dc8f77230fcf8f485543465d982810e3f306e29a052a0f"
+  url "https://github.com/wine-fall/which-account/archive/refs/tags/v1.0.1.tar.gz"
+  sha256 "9e5e186afbd499d8edbc6fcafb57118be8dc900dff59b9890ac93d6560e38062"
   license "MIT"
   head "https://github.com/wine-fall/which-account.git", branch: "main"
 
@@ -57,7 +57,9 @@ class WhichAccount < Formula
   end
 
   test do
-    assert_match version.to_s, shell_output("#{bin}/which-account --version")
+    # Not compared against version.to_s: a --HEAD build's version is "HEAD-<sha>",
+    # while the binary always reports its own release number.
+    assert_match(/^\d+\.\d+\.\d+$/, shell_output("#{bin}/which-account --version").strip)
     # A non-http(s) URL must pass straight through rather than open a picker.
     assert_match "pass through", shell_output("#{bin}/which-account --dry-run mailto:someone@example.com")
   end
