@@ -1,8 +1,8 @@
 class WhichAccount < Formula
   desc "Ask which Chrome account a link should open in, then remember the answer"
   homepage "https://github.com/wine-fall/which-account"
-  url "https://github.com/wine-fall/which-account/archive/refs/tags/v1.0.3.tar.gz"
-  sha256 "3928e3273fe53e68fe914f7d29bce4ddcca9383c98cf0c6482055eb979215531"
+  url "https://github.com/wine-fall/which-account/archive/refs/tags/v1.0.4.tar.gz"
+  sha256 "8a23b6be8dc602e15dd6415eee0778b83fd414f20a73121b0d79eceea7dd761e"
   license "MIT"
   head "https://github.com/wine-fall/which-account.git", branch: "main"
 

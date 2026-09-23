@@ -17,7 +17,11 @@ jobs:
   test-bot:
     strategy:
       matrix:
-        os: [ macos-26 ]
+        # Homebrew pours a bottle built for an older macOS on a newer one, so the
+        # oldest runner of each architecture covers everything after it. macos-26
+        # is here to test on the current release. macos-14 is left out: it is
+        # deprecated, and a removed runner would stall every future pull request.
+        os: [ macos-15, macos-15-intel, macos-26 ]
         include:
           - os: ubuntu-latest
             container:
