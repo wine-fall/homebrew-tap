@@ -1,8 +1,8 @@
 class WhichAccount < Formula
   desc "Ask which Chrome account a link should open in, then remember the answer"
   homepage "https://github.com/wine-fall/which-account"
-  url "https://github.com/wine-fall/which-account/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "9e5e186afbd499d8edbc6fcafb57118be8dc900dff59b9890ac93d6560e38062"
+  url "https://github.com/wine-fall/which-account/archive/refs/tags/v1.0.2.tar.gz"
+  sha256 "9e1b1985744ba7a7890c14b37331c5cf0f1e583ab4e78467ac6eb450fc27b1d5"
   license "MIT"
   head "https://github.com/wine-fall/which-account.git", branch: "main"
 
@@ -18,6 +18,14 @@ class WhichAccount < Formula
     (app/"Contents/MacOS").mkpath
     (app/"Contents/MacOS").install ".build/release/which-account"
     (app/"Contents").install "Resources/Info.plist"
+
+    # The linker's ad-hoc signature covers the executable only and names it after
+    # the binary, so the bundle fails validation and LaunchServices refuses to make
+    # it the default browser. Signing the bundle ad-hoc fixes that and still needs
+    # no developer account.
+    system "codesign", "--force", "--sign", "-",
+           "--identifier", "dev.wine-fall.which-account", app
+    system "codesign", "--verify", "--strict", app
 
     # NOT a symlink: invoked through one, Bundle.main resolves to the directory
     # holding the symlink, and --setup would register that instead of the app.
