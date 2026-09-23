@@ -6,6 +6,13 @@ class WhichAccount < Formula
   license "MIT"
   head "https://github.com/wine-fall/which-account.git", branch: "main"
 
+  # Releases are git tags, not GitHub Releases, so match on tags.
+  livecheck do
+    url :stable
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    strategy :git
+  end
+
   depends_on macos: :ventura
 
   # Built from source on the installing machine, so the binary matches the local
