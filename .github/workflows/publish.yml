@@ -1,4 +1,8 @@
 # brew tap-new uses this file to generate a bottle publish workflow for the new tap
+#
+# Run it by hand once a pull request's test-bot run is green:
+#   gh workflow run publish.yml -f pull_request=<number>
+# It uploads that run's bottles to a GitHub Release and commits the bottle block.
 name: brew pr-pull
 
 on:
